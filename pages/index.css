@@ -1,0 +1,9 @@
+@import url(../blocks/page.css);
+@import url(../vendor/normalize.css);
+@import url(../blocks/avatar.css);
+
+.index__screen {
+  display: flex;
+  justify-content: center;
+  opacity: 100;
+}
