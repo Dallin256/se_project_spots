@@ -1,6 +1,7 @@
 @import url(../blocks/page.css);
 @import url(../vendor/normalize.css);
 @import url(../blocks/avatar.css);
+@import url(../blocks/icon.css);
 
 .index__screen {
   display: flex;

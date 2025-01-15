@@ -1,0 +1,44 @@
+.icon__pencil {
+  max-width: 15px;
+  max-height: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 2fr 1fr;
+  padding: 0;
+}
+
+.icon__pencil-tip {
+  margin-top: auto;
+  margin-right: auto;
+  grid-area: 3/1/3/1;
+  width: 0;
+  height: 0;
+  border-top: 6px solid #212121;
+  border-right: 3px solid transparent;
+  border-left: 3px solid transparent;
+  transform: rotate(35deg);
+}
+
+.icon__pencil-body {
+  grid-area: 2/2/2/2;
+  position: relative;
+  right: 26%;
+  bottom: 25%;
+  margin-top: auto;
+  margin-right: auto;
+  width: 15px;
+  height: 6px;
+  background-color: #212121;
+  transform: rotate(126deg);
+}
+
+.icon__pencil-end {
+  grid-area: 1/3/1/3;
+  position: relative;
+  right: 132%;
+  width: 6px;
+  height: 6px;
+  background-color: #212121;
+  border-radius: 40% 40% 0% 0%;
+  transform: rotate(35deg);
+}

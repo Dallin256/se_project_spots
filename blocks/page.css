@@ -2,6 +2,7 @@
   background-color: #fcf5e5;
   width: 1440px;
   z-index: 1;
+  font-family: "poppins", arial, serif;
 }
 
 .page__menu-bar {
@@ -10,14 +11,15 @@
   height: 46px;
   display: flex;
   border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-  padding: 10px 80px;
 }
 .page__menu-bar-logo {
   margin: 0;
   width: 94px;
   height: 26px;
-  margin: auto;
+  padding: 10px 80px;
+  margin: 0 auto;
 }
+
 .page__header {
   display: flex;
   margin: 20px 80px 0;
@@ -28,8 +30,23 @@
   padding-bottom: 20px;
 }
 
+.page__header-button {
+  margin: auto 0 0 0;
+  width: 149px;
+  min-height: 52px;
+  border: none;
+  background-color: #212121;
+  color: #fcf5e5;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
+  border-radius: 8%;
+}
+
 .page__main {
   width: 1280px;
   min-height: 970px;
   margin: 20 80px 0;
+  display: grid;
+  gap: 20px;
 }
