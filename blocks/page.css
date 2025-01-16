@@ -40,17 +40,41 @@
   font-size: 16px;
   line-height: 16px;
   font-weight: 500;
-  border-radius: 8%;
+  border-radius: 8px;
 }
 
 .page__cards {
   width: 1280px;
   min-height: 970px;
-  margin: 20 80px 0;
+  margin: 20px 80px 0;
   display: grid;
   gap: 20px;
   padding-bottom: 40px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+@media screen and (max-width: 700px) {
+  .page {
+    width: min-content;
+  }
+
+  .page__cards {
+    grid-template-columns: auto;
+    width: min-content;
+    margin: 20px auto 60px;
+  }
+
+  .page__header {
+    width: min-content;
+    margin: 20px auto 0;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .page__header-button {
+    width: 288px;
+    margin: 20px auto;
+  }
 }

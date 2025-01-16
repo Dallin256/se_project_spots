@@ -4,7 +4,7 @@
 }
 
 .card__image {
-  border-radius: 4px;
+  border-radius: 8px;
   width: 413px;
   height: 413px;
 }
@@ -28,4 +28,15 @@
   background-color: transparent;
   border: none;
   margin: auto 0 0 0;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 288px;
+  }
+
+  .card__image {
+    width: 288px;
+    height: 318px;
+  }
 }

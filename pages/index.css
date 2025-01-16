@@ -1,7 +1,6 @@
 @import url(../blocks/page.css);
 @import url(../vendor/normalize.css);
-@import url(../blocks/avatar.css);
-@import url(../blocks/icon.css);
+@import url(../blocks/profile.css);
 @import url(../blocks/card.css);
 @import url(../blocks/footer.css);
 
@@ -9,4 +8,10 @@
   display: flex;
   justify-content: center;
   opacity: 100;
+}
+
+@media screen and (max-width: 700px) {
+  .index__screen {
+    flex-direction: column;
+  }
 }
