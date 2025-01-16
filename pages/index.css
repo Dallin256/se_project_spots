@@ -2,6 +2,8 @@
 @import url(../vendor/normalize.css);
 @import url(../blocks/avatar.css);
 @import url(../blocks/icon.css);
+@import url(../blocks/card.css);
+@import url(../blocks/footer.css);
 
 .index__screen {
   display: flex;

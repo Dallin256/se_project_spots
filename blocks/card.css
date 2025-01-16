@@ -1,0 +1,31 @@
+.card {
+  width: 413px;
+  height: 445px;
+}
+
+.card__image {
+  border-radius: 4px;
+  width: 413px;
+  height: 413px;
+}
+
+.card__details {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.card__name {
+  font-family: "poppins", arial, serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #212121;
+  margin: auto 0 0 0;
+}
+
+.card__heart {
+  background-color: transparent;
+  border: none;
+  margin: auto 0 0 0;
+}
