@@ -1,12 +1,16 @@
 .card {
   width: 413px;
   height: 445px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .card__image {
   border-radius: 8px;
   width: 413px;
   height: 413px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .card__details {
@@ -30,7 +34,7 @@
   margin: auto 0 0 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .card {
     width: 288px;
   }
