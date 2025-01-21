@@ -1,4 +1,16 @@
-.card {
+.cards {
+  max-width: 100%;
+  min-height: 970px;
+  margin: 20px 80px 0;
+  display: grid;
+  gap: 20px;
+  padding-bottom: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
+}
+
+.cards__card {
   max-width: 413px;
 }
 
@@ -21,8 +33,13 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
+  max-width: 100%;
+  min-height: min-content;
   color: #212121;
   margin: auto 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card__heart {
@@ -34,10 +51,23 @@
 
 .card__heart:hover {
   opacity: 100%;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 730px) {
-  .card {
+@media screen and (max-width: 1360px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .cards {
+    grid-template-columns: auto;
+    width: max-content;
+    margin: 20px auto 60px;
+  }
+
+  .cards__card {
     max-width: 288px;
   }
 

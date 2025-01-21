@@ -1,31 +1,13 @@
 .page {
+  display: flex;
+  justify-content: center;
+  opacity: 100;
+}
+
+.page__content {
   background-color: #fcf5e5;
   z-index: 1;
   font-family: "poppins", arial, serif;
-}
-
-.page__menu-bar {
-  background-color: #fff;
-  width: 100%;
-  display: flex;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-}
-.page__menu-bar-logo {
-  margin: 0;
-  width: 94px;
-  height: 26px;
-  padding: 10px 80px;
-  margin: 0 auto;
-}
-
-.page__header {
-  display: flex;
-  margin: 20px 80px 0;
-  justify-content: space-between;
-  max-width: 100%;
-  min-height: 210px;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
-  padding-bottom: 20px;
 }
 
 .page__header-button {
@@ -43,31 +25,12 @@
 
 .page__header-button:hover {
   opacity: 80%;
-}
-
-.page__cards {
-  max-width: 100%;
-  min-height: 970px;
-  margin: 20px 80px 0;
-  display: grid;
-  gap: 20px;
-  padding-bottom: 40px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.4);
-}
-
-@media screen and (max-width: 1360px) {
-  .page__cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  cursor: pointer;
 }
 
 @media screen and (max-width: 930px) {
-  .page__cards {
-    grid-template-columns: auto;
-    width: max-content;
-    margin: 20px auto 60px;
+  .page {
+    flex-direction: column;
   }
 
   .page__header {

@@ -1,0 +1,14 @@
+.header {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.header__logo {
+  margin: 0;
+  width: 94px;
+  height: 26px;
+  padding: 10px 80px;
+  margin: 0 auto;
+}

@@ -1,18 +1,7 @@
+@import url(../blocks/header.css);
 @import url(../blocks/page.css);
 @import url(../vendor/normalize.css);
 @import url(../blocks/profile.css);
 @import url(../blocks/card.css);
 @import url(../blocks/footer.css);
 @import url(../fonts/fonts.css);
-
-.index__screen {
-  display: flex;
-  justify-content: center;
-  opacity: 100;
-}
-
-@media screen and (max-width: 930px) {
-  .index__screen {
-    flex-direction: column;
-  }
-}
