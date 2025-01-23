@@ -10,24 +10,6 @@
   font-family: "poppins", arial, serif;
 }
 
-.page__header-button {
-  margin: auto 0 0 0;
-  width: 149px;
-  min-height: 52px;
-  border: none;
-  background-color: #212121;
-  color: #fcf5e5;
-  font-size: 16px;
-  line-height: 16px;
-  font-weight: 500;
-  border-radius: 8px;
-}
-
-.page__header-button:hover {
-  opacity: 80%;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 930px) {
   .page {
     flex-direction: column;
@@ -38,11 +20,5 @@
     margin: 20px auto 0;
     flex-direction: column;
     justify-content: flex-start;
-  }
-
-  .page__header-button {
-    width: 288px;
-    margin: 20px auto;
-    max-width: 100%;
   }
 }

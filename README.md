@@ -23,3 +23,6 @@ Main technology used in this project is as follows:
 
 Github Pages Link: https://dallin256.github.io/se_project_spots/
 
+Overview Video:
+https://youtu.be/YS4GsWiDhG4
+
