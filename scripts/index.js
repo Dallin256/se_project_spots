@@ -1,7 +1,24 @@
 
- const initialCards= [card1, card2, card3, card5, card6];
+const profileEdit = document.querySelector("#profile-edit", "modal");
+const profileEditButton = document.querySelector("#profile-edit-button") ;
+const profileEditButtonClose = document.querySelector(".modal__close-button");
 
-    initialCards[0]={
+
+
+profileEditButton.addEventListener('click', editProfile);
+
+function editProfile() {  
+   profileEdit.setAttribute("style", "visibility: visible");
+} 
+
+profileEditButtonClose.addEventListener('click', editProfileClose);
+
+function editProfileClose(){
+   profileEdit.setAttribute("style", "visibility: hidden");
+}
+ /* const initialCards= [card1, card2, card3, card5, card6];
+
+   initialCards[0]={
         name: "Aoraki Mountain ",
         link: "https://images.unsplash.com/photo-1589023846998-3cbff59d037f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
      };
@@ -25,3 +42,4 @@
         name: "Congaree" ,
         link: "https://images.unsplash.com/photo-1647747836228-e4a823814697?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uZ2FyZWV8ZW58MHx8MHx8fDA%3D"
      };
+*/
