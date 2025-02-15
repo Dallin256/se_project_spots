@@ -7,7 +7,8 @@ let profileName = document.querySelector(".profile__name");
 let profileDesc = document.querySelector(".profile__description");
 let profileNameEdit = document.querySelector("#profile__name-edit");
 let profileDescEdit = document.querySelector("#profile__description-edit");
-const cardTemplate = document.querySelector("#card").Content;
+const cardTemplate = document.querySelector("#card").content;
+const userCard = cardTemplate.querySelector(".card").cloneNode(true);
 
 
 profileEditButton.addEventListener('click', editProfile);
@@ -32,8 +33,8 @@ profileEditButtonClose.addEventListener('click', editProfileClose);
 function editProfileClose(){
    profileEdit.setAttribute("style", "visibility: hidden");
 }
-document.querySelector(".profile__name");
-  const initialCards= [card1, card2, card3, card5, card6];
+cardTemplate.querySelector(".card");
+  const initialCards= [0, 1, 2, 3, 4, 5];
 
    initialCards[0]={
         name: "Aoraki Mountain ",
@@ -59,3 +60,11 @@ document.querySelector(".profile__name");
         name: "Congaree" ,
         link: "https://images.unsplash.com/photo-1647747836228-e4a823814697?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uZ2FyZWV8ZW58MHx8MHx8fDA%3D"
      };
+const cardsBox = document.querySelector("#cards");
+const spot = cardTemplate.querySelector(".card__image").src = initialCards.link;
+const spotName = cardTemplate.querySelector(".card__name").innerText = initialCards.name;
+
+
+cardsBox.append(cardTemplate);
+
+
