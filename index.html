@@ -19,10 +19,18 @@
         </div>
         <form class="modal__content">
           <label class="modal__form-label"
-            >Name<input type="text" class="modal__input"
+            >Name<input
+              id="profile__name-edit"
+              placeholder="Bessie Coleman"
+              type="text"
+              class="modal__input"
           /></label>
           <label class="modal__form-label"
-            >Description<input type="text" class="modal__input"
+            >Description<input
+              id="profile__description-edit"
+              placeholder="Civil Aviator"
+              type="text"
+              class="modal__input"
           /></label>
           <button class="modal__save">Save</button>
         </form>
@@ -63,92 +71,21 @@
       </section>
 
       <section class="cards">
-        <div class="card">
-          <img class="card__image" src="./images/val.png" alt="card image" />
-          <div class="card__details">
-            <h2 class="card__name">Val Thorens</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
+        <template id="card">
+          <div class="card">
+            <img class="card__image" src="./images/val.png" alt="card image" />
+            <div class="card__details">
+              <h2 class="card__name">Val Thorens</h2>
+              <button type="button" class="card__heart">
+                <img
+                  class="card__heart-image"
+                  src="./images/Union.svg"
+                  alt="heart"
+                />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/terrace.png"
-            alt="card image"
-          />
-          <div class="card__details">
-            <h2 class="card__name">Restaurant terrace</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/cafe.png" alt="card image" />
-          <div class="card__details">
-            <h2 class="card__name">An outdoor cafe</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/bridge.png" alt="card image" />
-          <div class="card__details">
-            <h2 class="card__name">A very long bridge over the forest...</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/tunnel.png" alt="card image" />
-          <div class="card__details">
-            <h2 class="card__name">Tunnel with morning light</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            class="card__image"
-            src="./images/m_house.png"
-            alt="card image"
-          />
-          <div class="card__details">
-            <h2 class="card__name">Mountain house</h2>
-            <button type="button" class="card__heart">
-              <img
-                class="card__heart-image"
-                src="./images/Union.svg"
-                alt="heart"
-              />
-            </button>
-          </div>
-        </div>
+        </template>
       </section>
 
       <footer class="footer">
