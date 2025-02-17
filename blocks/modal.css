@@ -111,7 +111,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 12px 12px 24px;
+    margin: 12px;
   }
 
   .modal__heading {
@@ -127,7 +127,7 @@
   .modal__content {
     width: 276px;
     height: 248px;
-    padding: 0 12px 12px;
+    margin: 12px;
     gap: 24px;
   }
 
