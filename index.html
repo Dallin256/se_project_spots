@@ -9,6 +9,34 @@
   </head>
 
   <body class="page">
+    <div id="add-card" class="modal">
+      <div class="modal__container">
+        <div class="modal__heading-box">
+          <h2 class="modal__heading">New post</h2>
+          <button class="modal__close-button">
+            <img alt="Close Button" src="./images/close.svg" />
+          </button>
+        </div>
+        <form id="new-post-modal__form" class="modal__content">
+          <label class="modal__form-label"
+            >Image Link<input
+              id="card__image_form"
+              placeholder="Paste a link to the picture"
+              type="text"
+              class="modal__input"
+          /></label>
+          <label class="modal__form-label"
+            >Caption<input
+              id="card__name_form"
+              placeholder="Type your caption"
+              type="text"
+              class="modal__input"
+          /></label>
+          <button class="modal__save">Save</button>
+        </form>
+      </div>
+    </div>
+
     <div id="profile-edit" class="modal">
       <div class="modal__container">
         <div class="modal__heading-box">
@@ -17,7 +45,7 @@
             <img alt="Close Button" src="./images/close.svg" />
           </button>
         </div>
-        <form id="modal__form" class="modal__content">
+        <form id="profile-modal__form" class="modal__content">
           <label class="modal__form-label"
             >Name<input
               id="profile__name-edit"
@@ -74,17 +102,21 @@
         <template id="card">
           <div class="card">
             <img class="card__image" alt="card image" />
+            <button class="card__delete-button"></button>
             <div class="card__details">
               <h2 class="card__name">Name Here</h2>
-              <button type="button" class="card__heart">
-                <img
-                  class="card__heart-image"
-                  src="./images/Union.svg"
-                  alt="heart"
-                />
-              </button>
+              <button type="button" class="card__heart"></button>
             </div>
           </div>
+        </template>
+        <template>
+          <div>
+            <img />
+          </div>
+          <button class="modal__close-button modal__picture-close">
+            <img alt="Close Button" src="./images/close.svg" />
+          </button>
+          <div></div>
         </template>
       </section>
 
