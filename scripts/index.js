@@ -23,6 +23,10 @@ const initialCards = [
     name: "Congaree",
     link: "https://images.unsplash.com/photo-1647747836228-e4a823814697?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uZ2FyZWV8ZW58MHx8MHx8fDA%3D",
   },
+  {
+    name: "bridge",
+    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
 const profileEdit = document.querySelector("#profile-edit");
@@ -32,7 +36,12 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#add-card");
 const newPostClose = newPostModal.querySelector(".modal__close-button");
-const profileEditButtonClose = document.querySelector(".modal__close-button");
+const profileEditButtonClose = profileEdit.querySelector(
+  ".modal__close-button"
+);
+const modalPicture = document.querySelector("#picture__modal");
+const modalPictureClose = modalPicture.querySelector(".modal__close-button");
+const modalPictureImage = modalPicture.querySelector(".modal__picture");
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__description");
 const profileNameEdit = document.querySelector("#profile__name-edit");
@@ -41,6 +50,7 @@ const cardName = newPostForm.querySelector("#card__name_form");
 const cardImage = newPostForm.querySelector("#card__image_form");
 const cardTemplate = document.querySelector("#card").content;
 const cardsBox = document.querySelector("#cards");
+const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
 
 function openModal(event) {
   event.classList.add("modal_opened");
@@ -78,8 +88,12 @@ function handleLike(event) {
   event.target.classList.toggle("card__heart_filled");
 }
 
-function handlePictureModal(event) {
-  event.target.classList.add();
+function fullImage(event) {
+  const modalImage = event.target.closest(".card__image").src;
+  const modalImageName = event.target.closest(".card__image").alt;
+  modalPictureImage.src = modalImage;
+  modalImageCaption.textContent = modalImageName;
+  return modalPictureImage;
 }
 
 function getCardElement(data) {
@@ -91,6 +105,10 @@ function getCardElement(data) {
   cardImageElement.alt = data.name;
   const heart = cardElement.querySelector(".card__heart");
   const deleteCard = cardElement.querySelector(".card__delete-button");
+  cardImageElement.addEventListener("click", fullImage);
+  cardImageElement.addEventListener("click", () => {
+    openModal(modalPicture);
+  });
   deleteCard.addEventListener("click", handleDeleteCard);
   heart.addEventListener("click", handleLike);
   return cardElement;
@@ -117,6 +135,10 @@ newPostClose.addEventListener("click", () => {
 
 profileEditButtonClose.addEventListener("click", () => {
   closeModal(profileEdit);
+});
+
+modalPictureClose.addEventListener("click", () => {
+  closeModal(modalPicture);
 });
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
