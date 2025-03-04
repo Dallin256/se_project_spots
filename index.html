@@ -15,7 +15,7 @@
           <img alt="Close Button" src="./images/delete2.png" />
         </button>
         <img src="./images/landscapeTest.avif" class="modal__picture" />
-        <div class="modal__picture-caption">amogus</div>
+        <p class="modal__picture-caption">Image Title</p>
       </div>
     </div>
 
@@ -79,47 +79,51 @@
       <header class="header">
         <img class="header__logo" src="./images/Logo.svg" alt="Menu Logo" />
       </header>
-      <section class="profile">
-        <div class="profile__info">
-          <img
-            class="profile__pic"
-            src="./images/Avatar.avif"
-            alt="Avatar Picture"
-          />
-          <div class="profile__details">
-            <div class="profile__name-and-description">
-              <h1 class="profile__name">Bessie Coleman</h1>
-              <p class="profile__description">Civil Aviator</p>
+      <main>
+        <section class="profile">
+          <div class="profile__info">
+            <img
+              class="profile__pic"
+              src="./images/Avatar.avif"
+              alt="Avatar Picture"
+            />
+            <div class="profile__details">
+              <div class="profile__name-and-description">
+                <h1 class="profile__name">Bessie Coleman</h1>
+                <p class="profile__description">Civil Aviator</p>
+              </div>
+              <button
+                id="profile-edit-button"
+                type="button"
+                class="profile__edit-button"
+              >
+                <img
+                  class="profile__edit-logo"
+                  src="./images/pencil.svg"
+                  alt="Edit Logo"
+                />
+                <span class="profile__edit-text">Edit Profile</span>
+              </button>
             </div>
-            <button
-              id="profile-edit-button"
-              type="button"
-              class="profile__edit-button"
-            >
-              <img
-                class="profile__edit-logo"
-                src="./images/pencil.svg"
-                alt="Edit Logo"
-              />
-              <span class="profile__edit-text">Edit Profile</span>
-            </button>
           </div>
-        </div>
-        <button type="button" class="profile__new-post-btn">+ New Post</button>
-      </section>
+          <button type="button" class="profile__new-post-btn">
+            + New Post
+          </button>
+        </section>
 
-      <section id="cards" class="cards">
-        <template id="card">
-          <div class="card">
-            <img class="card__image" alt="card image" />
-            <button class="card__delete-button"></button>
-            <div class="card__details">
-              <h2 class="card__name">Name Here</h2>
-              <button type="button" class="card__heart"></button>
+        <section id="cards" class="cards">
+          <template id="card">
+            <div class="card">
+              <img class="card__image" alt="card image" />
+              <button class="card__delete-button"></button>
+              <div class="card__details">
+                <h2 class="card__name">Name Here</h2>
+                <button type="button" class="card__heart"></button>
+              </div>
             </div>
-          </div>
-        </template>
-      </section>
+          </template>
+        </section>
+      </main>
 
       <footer class="footer">
         <h2 class="footer__copyright">2023 © Spots</h2>
