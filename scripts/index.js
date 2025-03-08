@@ -62,8 +62,7 @@ function closeModal(modal) {
 }
 
 function handleProfileFormSubmit(e) {
-  profileNameEdit.value = profileName.innerText;
-  profileDescEdit.value = profileDesc.innerText;
+
   profileName.innerText = profileNameEdit.value;
   profileDesc.innerText = profileDescEdit.value;
   e.preventDefault();
@@ -76,8 +75,7 @@ function handleNewPostFormSubmit(e) {
   const newCard = getCardElement({ name: postCaption, link: postLink });
   cardsBox.prepend(newCard);
   e.preventDefault();
-  e.target.reset(cardImage.value);
-  e.target.reset(cardName.value);
+  e.target.reset();
   closeModal(newPostModal);
 }
 
@@ -96,7 +94,6 @@ function handleImageClick(event) {
   modalPictureImage.src = modalImage;
   modalPictureImage.alt = modalImageName;
   modalImageCaption.textContent = modalImageName;
-  return modalPictureImage;
 }
 
 function getCardElement(data) {
@@ -123,6 +120,9 @@ function addCards() {
 
 profileEditButton.addEventListener("click", () => {
   openModal(profileEdit);
+  profileNameEdit.value = profileName.innerText;
+  profileDescEdit.value = profileDesc.innerText;
+
 });
 
 newPostBtn.addEventListener("click", () => {
