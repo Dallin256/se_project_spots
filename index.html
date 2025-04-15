@@ -32,8 +32,9 @@
             >Image Link<input
               id="card__image_form"
               placeholder="Paste a link to the picture"
-              type="text"
+              type="url"
               class="modal__input"
+              required
           /></label>
           <label class="modal__form-label"
             >Caption<input
@@ -41,6 +42,9 @@
               placeholder="Type your caption"
               type="text"
               class="modal__input"
+              minlength="2"
+              maxlength="30"
+              required
           /></label>
           <button class="modal__save">Save</button>
         </form>
@@ -59,16 +63,22 @@
           <label class="modal__form-label"
             >Name<input
               id="profile__name-edit"
-              placeholder="Bessie Coleman"
+              placeholder="Type your name here"
               type="text"
               class="modal__input"
+              minlength="2"
+              maxlength="40"
+              required
           /></label>
           <label class="modal__form-label"
             >Description<input
               id="profile__description-edit"
-              placeholder="Civil Aviator"
+              placeholder="Describe yourself! :)"
               type="text"
               class="modal__input"
+              minlength="2"
+              maxlength="200"
+              required
           /></label>
           <button class="modal__save">Save</button>
         </form>
