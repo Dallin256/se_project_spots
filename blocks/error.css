@@ -1,0 +1,12 @@
+.error__message {
+  visibility: hidden;
+  font-family: "poppins", arial, serif;
+  line-height: 110%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ff0000b2;
+  margin: 0;
+}
+.error__message_active {
+  visibility: visible;
+}

@@ -35,7 +35,10 @@
               type="url"
               class="modal__input"
               required
-          /></label>
+            />
+            <div class="error__message">Please enter a URL.</div></label
+          >
+
           <label class="modal__form-label"
             >Caption<input
               id="card__name_form"
@@ -45,7 +48,9 @@
               minlength="2"
               maxlength="30"
               required
-          /></label>
+            />
+            <div class="error__message">Please fill out this feild.</div></label
+          >
           <button class="modal__save">Save</button>
         </form>
       </div>
@@ -69,7 +74,9 @@
               minlength="2"
               maxlength="40"
               required
-          /></label>
+            />
+            <div class="error__message">Please fill out this feild.</div></label
+          >
           <label class="modal__form-label"
             >Description<input
               id="profile__description-edit"
@@ -79,7 +86,12 @@
               minlength="2"
               maxlength="200"
               required
-          /></label>
+            />
+            <div class="error__message">
+              Please use at least 2 characters (you are currently using 1
+              characters).
+            </div></label
+          >
           <button class="modal__save">Save</button>
         </form>
       </div>
@@ -141,5 +153,6 @@
     </div>
 
     <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>

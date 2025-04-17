@@ -51,7 +51,7 @@ const cardImage = newPostForm.querySelector("#card__image_form");
 const cardTemplate = document.querySelector("#card").content;
 const cardsBox = document.querySelector("#cards");
 const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
-const closeButtons = document.querySelectorAll(".modal__close");
+const closeButtons = Array.from(document.querySelectorAll(".modal__close"));
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -62,7 +62,6 @@ function closeModal(modal) {
 }
 
 function handleProfileFormSubmit(e) {
-
   profileName.innerText = profileNameEdit.value;
   profileDesc.innerText = profileDescEdit.value;
   e.preventDefault();
@@ -122,7 +121,6 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileEdit);
   profileNameEdit.value = profileName.innerText;
   profileDescEdit.value = profileDesc.innerText;
-
 });
 
 newPostBtn.addEventListener("click", () => {
