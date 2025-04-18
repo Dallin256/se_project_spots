@@ -77,7 +77,8 @@
   color: rgba(33, 33, 33, 1);
 }
 
-.modal__save {
+.modal__button-save {
+  border-style: none;
   width: 156px;
   height: 52px;
   background-color: #212121;
@@ -95,10 +96,20 @@
   opacity: 70%;
 }
 
-.modal__save:hover {
+.modal__button-save:hover {
   opacity: 80%;
   cursor: pointer;
 }
+
+.modal__button-save_disabled {
+  opacity: 50%;
+}
+
+.modal__button-save_disabled:hover {
+  cursor: default;
+  opacity: 50%;
+}
+
 .modal__picture-box {
   position: fixed;
   max-width: 991px;
@@ -125,6 +136,7 @@
 .modal__picture-caption {
   position: absolute;
   bottom: -40px;
+  margin: 0;
   left: 0px;
   font-size: 20px;
   line-height: 24px;
@@ -195,7 +207,7 @@
     font-size: 16px;
     line-height: 16px;
   }
-  .modal__save {
+  .modal__button-save {
     width: 276px;
   }
 

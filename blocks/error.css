@@ -10,3 +10,7 @@
 .error__message_active {
   visibility: visible;
 }
+
+.error__input-box {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}

@@ -27,17 +27,16 @@
             <img alt="Close Button" src="./images/close.svg" />
           </button>
         </div>
-        <form id="new-post-modal__form" class="modal__content">
+        <form id="new-post-modal__form" class="modal__content" novalidate>
           <label class="modal__form-label"
             >Image Link<input
               id="card__image_form"
               placeholder="Paste a link to the picture"
               type="url"
               class="modal__input"
-              required
-            />
-            <div class="error__message">Please enter a URL.</div></label
-          >
+              required />
+            <p class="error__message"></p
+          ></label>
 
           <label class="modal__form-label"
             >Caption<input
@@ -47,11 +46,10 @@
               class="modal__input"
               minlength="2"
               maxlength="30"
-              required
-            />
-            <div class="error__message">Please fill out this feild.</div></label
-          >
-          <button class="modal__save">Save</button>
+              required />
+            <p class="error__message"></p
+          ></label>
+          <button class="modal__button-save">Save</button>
         </form>
       </div>
     </div>
@@ -64,7 +62,7 @@
             <img alt="Close Button" src="./images/close.svg" />
           </button>
         </div>
-        <form id="profile-modal__form" class="modal__content">
+        <form id="profile-modal__form" class="modal__content" novalidate>
           <label class="modal__form-label"
             >Name<input
               id="profile__name-edit"
@@ -73,10 +71,9 @@
               class="modal__input"
               minlength="2"
               maxlength="40"
-              required
-            />
-            <div class="error__message">Please fill out this feild.</div></label
-          >
+              required />
+            <p class="error__message"></p
+          ></label>
           <label class="modal__form-label"
             >Description<input
               id="profile__description-edit"
@@ -85,14 +82,10 @@
               class="modal__input"
               minlength="2"
               maxlength="200"
-              required
-            />
-            <div class="error__message">
-              Please use at least 2 characters (you are currently using 1
-              characters).
-            </div></label
-          >
-          <button class="modal__save">Save</button>
+              required />
+            <p class="error__message"></p
+          ></label>
+          <button class="modal__button-save">Save</button>
         </form>
       </div>
     </div>

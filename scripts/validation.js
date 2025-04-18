@@ -1,36 +1,38 @@
 const forms = Array.from(document.querySelectorAll(".modal__content"));
 
-forms.forEach((form) => {
-  const formInputs = Array.from(form.querySelectorAll(".modal__input"));
-  const formFields = Array.from(form.querySelectorAll(".modal__form-label"));
+function showError(inputElement, errorElement, buttonElement) {
+  inputElement.classList.add("error__input-box");
+  errorElement.classList.add("error__message_active");
+  errorElement.textContent = inputElement.validationMessage;
+  buttonElement.classList.add("modal__button-save_disabled");
+  buttonElement.setAttribute("disabled", true);
+}
 
-  formInputs.forEach((input) => {
-    input.addEventListener(
-      "invalid",
-      (evt) => {
-        evt.preventDefault();
-      },
-      true
-    );
-  });
+function hideError(inputElement, errorElement, buttonElement) {
+  inputElement.classList.remove("error__input-box");
+  errorElement.classList.remove("error__message_active");
+  buttonElement.classList.remove("modal__button-save_disabled");
+  buttonElement.removeAttribute("disabled");
+}
+
+forms.forEach((form) => {
+  const formFields = Array.from(form.querySelectorAll(".modal__form-label"));
+  const submit = form.querySelector(".modal__button-save");
 
   formFields.forEach((field) => {
     const input = field.querySelector(".modal__input");
     const msg = field.querySelector(".error__message");
-    checkValidity(input, msg);
-    evt.preventDefault();
+
+    input.addEventListener("input", () => {
+      checkValidity(input, msg, submit);
+    });
   });
 });
 
-function checkValidity(input, msg) {
+function checkValidity(input, msg, submit) {
   if (!input.validity.valid) {
-    msg.classList.add("error__message_active");
+    showError(input, msg, submit);
   } else {
-    msg.classList.remove("error__message_active");
+    hideError(input, msg, submit);
   }
 }
-/* form.addEventListener("submit", function (evt) {
-       evt.preventDefault();
-      console.log("added Listener");
-   });
-});*/

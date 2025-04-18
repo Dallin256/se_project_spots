@@ -140,8 +140,8 @@ modalPictureClose.addEventListener("click", () => {
 });
 
 /*closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(popup));
+ const popup = button.closest(".modal")
+ button.addEventListener("click", ()=>{closeModal(popup);})
 });*/
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
