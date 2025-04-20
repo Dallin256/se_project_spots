@@ -53,22 +53,8 @@ const cardsBox = document.querySelector("#cards");
 const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
 const modals = Array.from(document.querySelectorAll(".modal"));
 
-function addEscapeListener(currentModal) {
-  currentModal.addEventListener(
-    "keypress",
-    closeModalButtonHandler(currentModal)
-  );
-}
-
-function removeEscapeListener(currentModal) {
-  currentModal.removeEventListener(
-    "keypress",
-    closeModalButtonHandler(currentModal)
-  );
-}
-
-function closeModalButtonHandler(evt) {
-  if (evt.key == "Escape") {
+function onClosePress(evt) {
+  if (evt.key === "Escape") {
     const currentModal = document.querySelector(".modal_opened");
     closeModal(currentModal);
   }
@@ -76,12 +62,12 @@ function closeModalButtonHandler(evt) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  addEscapeListener(modal);
+  document.addEventListener("keydown", onClosePress);
 }
 
 function closeModal(modal) {
-  modal.removeEventListener("keypress", closeModalButtonHandler(modal));
-  removeEscapeListener(modal);
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", onClosePress);
 }
 
 function handleProfileFormSubmit(e) {
@@ -89,12 +75,6 @@ function handleProfileFormSubmit(e) {
   profileDesc.innerText = profileDescEdit.value;
   e.preventDefault();
   closeModal(profileEdit);
-}
-
-function disableButton(form) {
-  const saveButton = form.querySelector(".modal__button-save");
-  saveButton.classList.add("modal__button-save_disabled");
-  saveButton.setAttribute("disabled", true);
 }
 
 function handleNewPostFormSubmit(e) {
