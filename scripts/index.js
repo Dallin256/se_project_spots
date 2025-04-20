@@ -53,12 +53,35 @@ const cardsBox = document.querySelector("#cards");
 const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
 const modals = Array.from(document.querySelectorAll(".modal"));
 
+function addEscapeListener(currentModal) {
+  currentModal.addEventListener(
+    "keypress",
+    closeModalButtonHandler(currentModal)
+  );
+}
+
+function removeEscapeListener(currentModal) {
+  currentModal.removeEventListener(
+    "keypress",
+    closeModalButtonHandler(currentModal)
+  );
+}
+
+function closeModalButtonHandler(evt) {
+  if (evt.key == "Escape") {
+    const currentModal = document.querySelector(".modal_opened");
+    closeModal(currentModal);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  addEscapeListener(modal);
 }
 
 function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+  modal.removeEventListener("keypress", closeModalButtonHandler(modal));
+  removeEscapeListener(modal);
 }
 
 function handleProfileFormSubmit(e) {
@@ -68,6 +91,12 @@ function handleProfileFormSubmit(e) {
   closeModal(profileEdit);
 }
 
+function disableButton(form) {
+  const saveButton = form.querySelector(".modal__button-save");
+  saveButton.classList.add("modal__button-save_disabled");
+  saveButton.setAttribute("disabled", true);
+}
+
 function handleNewPostFormSubmit(e) {
   const postLink = cardImage.value;
   const postCaption = cardName.value;
@@ -75,6 +104,7 @@ function handleNewPostFormSubmit(e) {
   cardsBox.prepend(newCard);
   e.preventDefault();
   e.target.reset();
+  disableButton(newPostForm);
   closeModal(newPostModal);
 }
 
@@ -124,6 +154,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 newPostBtn.addEventListener("click", () => {
+  disableButton(newPostForm);
   openModal(newPostModal);
 });
 
@@ -142,18 +173,13 @@ modalPictureClose.addEventListener("click", () => {
 modals.forEach((modal) => {
   const buttonClose = modal.querySelector(".modal__close-button");
 
-  modal.addEventListener("click", (evt) => {
+  modal.addEventListener("mousedown", (evt) => {
     if (evt.target === modal) {
       closeModal(modal);
     }
   });
   buttonClose.addEventListener("click", () => {
     closeModal(modal);
-  });
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key == "Escape") {
-      closeModal(modal);
-    }
   });
 });
 
