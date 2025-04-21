@@ -1,54 +1,73 @@
-const forms = Array.from(document.querySelectorAll(".modal__content"));
+const settings = {
+  formSelector: ".modal__form",
+  saveButtonSelector: ".modal__button-save",
+  formFieldSelector: ".modal__form-label",
+  inputFieldSelector: ".modal__input",
+  inputErrorSelector: ".error__message",
+  errorMessageActiveClass: "error__message_active",
+  errorInputClass: "error__input-box",
+  saveButtonDisabledClass: "modal__button-save_disabled",
+};
 
-function showError(inputElement, errorElement, buttonElement) {
-  inputElement.classList.add("error__input-box");
-  errorElement.classList.add("error__message_active");
+function showError(inputElement, errorElement, config) {
+  inputElement.classList.add(config.errorInputClass);
+  errorElement.classList.add(config.errorMessageActiveClass);
   errorElement.textContent = inputElement.validationMessage;
-  buttonElement.classList.add("modal__button-save_disabled");
-  buttonElement.setAttribute("disabled", true);
 }
 
-function hideError(inputElement, errorElement, buttonElement) {
-  inputElement.classList.remove("error__input-box");
-  errorElement.classList.remove("error__message_active");
+function hideError(inputElement, errorElement, config) {
+  inputElement.classList.remove(config.errorInputClass);
+  errorElement.classList.remove(config.errorMessageActiveClass);
 }
 
-function disableButton(form) {
-  const saveButton = form.querySelector(".modal__button-save");
-  saveButton.classList.add("modal__button-save_disabled");
+function disableButton(form, config) {
+  const saveButton = form.querySelector(config.saveButtonSelector);
+  saveButton.classList.add(config.saveButtonDisabledClass);
   saveButton.setAttribute("disabled", true);
 }
 
-function enableButton(form) {
-  const saveButton = form.querySelector(".modal__button-save");
-  saveButton.classList.remove("modal__button-save_disabled");
+function enableButton(form, config) {
+  const saveButton = form.querySelector(config.saveButtonSelector);
+  saveButton.classList.remove(config.saveButtonDisabledClass);
   saveButton.removeAttribute("disabled", true);
 }
 
-function enableValidation() {
+function enableValidation(config) {
+  const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
-    const formFields = Array.from(form.querySelectorAll(".modal__form-label"));
-    const submit = form.querySelector(".modal__button-save");
+    const formFields = Array.from(
+      form.querySelectorAll(config.formFieldSelector)
+    );
 
     formFields.forEach((field) => {
-      const input = field.querySelector(".modal__input");
-      const msg = field.querySelector(".error__message");
+      const input = field.querySelector(config.inputFieldSelector);
+      const msg = field.querySelector(config.inputErrorSelector);
 
       input.addEventListener("input", () => {
-        checkValidity(input, msg, submit, form);
+        checkValidity(input, msg, form, config);
       });
     });
   });
 }
 
-function checkValidity(input, msg, submit, form) {
+function checkValidity(input, msg, form, config) {
   if (!input.validity.valid) {
-    showError(input, msg, submit);
-    disableButton(form);
+    showError(input, msg, config);
+    disableButton(form, config);
   } else {
-    hideError(input, msg, submit);
-    enableButton(form);
+    hideError(input, msg, config);
+    enableButton(form, config);
   }
 }
+function resetValidation(form, config) {
+  const formFields = Array.from(
+    form.querySelectorAll(config.formFieldSelector)
+  );
+  formFields.forEach((field) => {
+    const input = field.querySelector(config.inputFieldSelector);
+    const msg = field.querySelector(config.inputErrorSelector);
+    hideError(input, msg, config);
+  });
+}
 
-enableValidation();
+enableValidation(settings);

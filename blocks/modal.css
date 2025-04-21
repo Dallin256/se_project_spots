@@ -49,7 +49,7 @@
   opacity: 40%;
 }
 
-.modal__content {
+.modal__form {
   display: flex;
   flex-direction: column;
   margin: 0 50px 32px;
@@ -196,7 +196,7 @@
     height: 40px;
   }
 
-  .modal__content {
+  .modal__form {
     width: 276px;
     height: 248px;
     margin: 12px;
