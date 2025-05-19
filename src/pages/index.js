@@ -1,3 +1,22 @@
+import "./index.css";
+import closeSrc from "../images/close.svg";
+import editSrc from "../images/pencil.svg";
+import avatarSrc from "../images/Avatar.avif";
+import headerImgSrc from "../images/logo.svg";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "./validation.js";
+
+const closeImage0 = document.getElementById("close-button0");
+const closeImage1 = document.getElementById("close-button1");
+const closeImage2 = document.getElementById("close-button2");
+const editImage = document.getElementById("logo_pencil");
+const avatarImage = document.getElementById("avatar");
+const logoImage = document.getElementById("logo");
+
 const initialCards = [
   {
     name: "Aoraki Mountain ",
@@ -36,9 +55,6 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#add-card");
 const newPostClose = newPostModal.querySelector(".modal__close-button");
-const profileEditButtonClose = profileEdit.querySelector(
-  ".modal__close-button"
-);
 const modalPicture = document.querySelector("#picture__modal");
 const modalPictureClose = modalPicture.querySelector(".modal__close-button");
 const modalPictureImage = modalPicture.querySelector(".modal__picture");
@@ -52,6 +68,16 @@ const cardTemplate = document.querySelector("#card").content;
 const cardsBox = document.querySelector("#cards");
 const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
 const modals = Array.from(document.querySelectorAll(".modal"));
+const profileEditButtonClose = profileEdit.querySelector(
+  ".modal__close-button"
+);
+
+closeImage0.src = closeSrc;
+closeImage1.src = closeSrc;
+closeImage2.src = closeSrc;
+editImage.src = editSrc;
+avatarImage.src = avatarSrc;
+logoImage.src = headerImgSrc;
 
 function pressKey(evt) {
   if (evt.key === "Escape") {
@@ -96,13 +122,12 @@ function handleLike(event) {
   event.target.classList.toggle("card__heart_filled");
 }
 
-function handleImageClick(event) {
+function handleImageClick(data) {
   openModal(modalPicture);
-  const modalImage = event.target.src;
-  const modalImageName = event.target.alt;
-  modalPictureImage.src = modalImage;
-  modalPictureImage.alt = modalImageName;
-  modalImageCaption.textContent = modalImageName;
+  console.log(modalPicture);
+  modalPictureImage.src = data.link;
+  modalPictureImage.alt = data.name;
+  modalImageCaption.textContent = data.name;
 }
 
 function getCardElement(data) {
@@ -114,7 +139,9 @@ function getCardElement(data) {
   cardImageElement.alt = data.name;
   const heart = cardElement.querySelector(".card__heart");
   const deleteCard = cardElement.querySelector(".card__delete-button");
-  cardImageElement.addEventListener("click", handleImageClick);
+  cardImageElement.addEventListener("click", () => {
+    handleImageClick(data);
+  });
   deleteCard.addEventListener("click", handleDeleteCard);
   heart.addEventListener("click", handleLike);
   return cardElement;
@@ -155,3 +182,4 @@ modals.forEach((modal) => {
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 newPostForm.addEventListener("submit", handleNewPostFormSubmit);
 addCards();
+enableValidation(settings);

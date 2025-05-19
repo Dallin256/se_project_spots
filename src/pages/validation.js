@@ -1,4 +1,4 @@
-const settings = {
+export const settings = {
   formSelector: ".modal__form",
   saveButtonSelector: ".modal__button-save",
   formFieldSelector: ".modal__form-label",
@@ -20,7 +20,7 @@ function hideError(inputElement, errorElement, config) {
   errorElement.classList.remove(config.errorMessageActiveClass);
 }
 
-function disableButton(form, config) {
+export function disableButton(form, config) {
   const saveButton = form.querySelector(config.saveButtonSelector);
   saveButton.classList.add(config.saveButtonDisabledClass);
   saveButton.setAttribute("disabled", true);
@@ -32,7 +32,7 @@ function enableButton(form, config) {
   saveButton.removeAttribute("disabled", true);
 }
 
-function enableValidation(config) {
+export function enableValidation(config) {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
     const formFields = Array.from(
@@ -59,7 +59,7 @@ function checkValidity(input, msg, form, config) {
     enableButton(form, config);
   }
 }
-function resetValidation(form, config) {
+export function resetValidation(form, config) {
   const formFields = Array.from(
     form.querySelectorAll(config.formFieldSelector)
   );
@@ -69,5 +69,3 @@ function resetValidation(form, config) {
     hideError(input, msg, config);
   });
 }
-
-enableValidation(settings);

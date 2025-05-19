@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="./src/pages/index.css" />
     <link rel="icon" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -12,9 +12,9 @@
     <div id="picture__modal" class="modal">
       <div class="modal__picture-box">
         <button class="modal__close-button modal__picture-close">
-          <img alt="Close Button" src="./images/delete2.png" />
+          <img alt="Close Button" id="close-button0" />
         </button>
-        <img src="./images/landscapeTest.avif" class="modal__picture" />
+        <img alt="" class="modal__picture" />
         <p class="modal__picture-caption">Image Title</p>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="modal__heading-box">
           <h2 class="modal__heading">New post</h2>
           <button class="modal__close-button">
-            <img alt="Close Button" src="./images/close.svg" />
+            <img alt="Close Button" id="close-button1" />
           </button>
         </div>
         <form id="new-post-modal__form" class="modal__form" novalidate>
@@ -59,7 +59,7 @@
         <div class="modal__heading-box">
           <h2 class="modal__heading">Edit profile</h2>
           <button class="modal__close-button">
-            <img alt="Close Button" src="./images/close.svg" />
+            <img alt="Close Button" id="close-button2" />
           </button>
         </div>
         <form id="profile-modal__form" class="modal__form" novalidate>
@@ -92,16 +92,12 @@
 
     <div class="page__content">
       <header class="header">
-        <img class="header__logo" src="./images/Logo.svg" alt="Menu Logo" />
+        <img class="header__logo" id="logo" alt="Menu Logo" />
       </header>
       <main>
         <section class="profile">
           <div class="profile__info">
-            <img
-              class="profile__pic"
-              src="./images/Avatar.avif"
-              alt="Avatar Picture"
-            />
+            <img class="profile__pic" id="avatar" alt="Avatar Picture" />
             <div class="profile__details">
               <div class="profile__name-and-description">
                 <h1 class="profile__name">Bessie Coleman</h1>
@@ -114,7 +110,7 @@
               >
                 <img
                   class="profile__edit-logo"
-                  src="./images/pencil.svg"
+                  id="logo_pencil"
                   alt="Edit Logo"
                 />
                 <span class="profile__edit-text">Edit Profile</span>
@@ -144,8 +140,5 @@
         <h2 class="footer__copyright">2023 © Spots</h2>
       </footer>
     </div>
-
-    <script defer src="./scripts/index.js"></script>
-    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
