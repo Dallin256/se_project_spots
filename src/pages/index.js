@@ -54,9 +54,7 @@ const newPostForm = document.forms["new-post-modal__form"];
 const profileEditButton = document.querySelector("#profile-edit-button");
 const newPostBtn = document.querySelector(".profile__new-post-btn");
 const newPostModal = document.querySelector("#add-card");
-const newPostClose = newPostModal.querySelector(".modal__close-button");
 const modalPicture = document.querySelector("#picture__modal");
-const modalPictureClose = modalPicture.querySelector(".modal__close-button");
 const modalPictureImage = modalPicture.querySelector(".modal__picture");
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__description");
@@ -68,9 +66,6 @@ const cardTemplate = document.querySelector("#card").content;
 const cardsBox = document.querySelector("#cards");
 const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
 const modals = Array.from(document.querySelectorAll(".modal"));
-const profileEditButtonClose = profileEdit.querySelector(
-  ".modal__close-button"
-);
 
 closeImage0.src = closeSrc;
 closeImage1.src = closeSrc;
