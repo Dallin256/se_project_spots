@@ -1,4 +1,5 @@
 import DeleteCard from "./DeleteCard";
+import ViewCard from "./viewCard";
 
 export default class Card {
   constructor(data, templateElement) {
@@ -17,22 +18,33 @@ export default class Card {
     cardImage.alt = this._cardName;
     cardTitle.textContent = this._cardName;
 
-    this._setEventListeners();
+    this._setEventListeners(this._cardElement);
 
     return this._cardElement;
   }
 
-  _handleDeleteCard() {
+  _handleDeleteCard(cardElement) {
     const deleteCardModal = document.querySelector("#delete-card");
-    const deletePopup = new DeleteCard(deleteCardModal);
+    const deletePopup = new DeleteCard(deleteCardModal, cardElement);
     deletePopup.open();
+    deletePopup.setEventListeners();
   }
 
-  _setEventListeners() {
-    console.log("listening");
-    this._deleteBtn = this._cardElement.querySelector(".card__delete-button");
+  _setEventListeners(cardElement) {
+    const viewCardModal = document.querySelector("#picture__modal");
+    const viewCard = new ViewCard(
+      viewCardModal,
+      this._cardLink,
+      this._cardName
+    );
+    this._deleteBtn = cardElement.querySelector(".card__delete-button");
     this._deleteBtn.addEventListener("click", () => {
-      this._handleDeleteCard();
+      this._handleDeleteCard(cardElement);
+    });
+    cardElement.addEventListener("click", () => {
+      viewCard.generatePopup();
+      viewCard.setEventListeners();
+      viewCard.open();
     });
   }
 }

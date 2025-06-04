@@ -1,6 +1,7 @@
 import "./index.css";
 import Section from "../components/Section.js";
 import closeSrc from "../images/close.svg";
+import closeSrcWhite from "../images/deleteWhite.png";
 import editSrc from "../images/pencil.svg";
 import avatarSrc from "../images/Avatar.avif";
 import headerImgSrc from "../images/logo.svg";
@@ -9,6 +10,7 @@ import {
   closeImage0,
   closeImage1,
   closeImage2,
+  closeImage3,
   cardTemplate,
   validationConfig,
 } from "../utils/constants.js";
@@ -35,21 +37,22 @@ const profileNameEdit = document.querySelector("#profile__name-edit");
 const profileDescEdit = document.querySelector("#profile__description-edit");
 const profileEditButton = document.querySelector("#profile-edit-button");
 
-closeImage0.src = closeSrc;
+closeImage0.src = closeSrcWhite;
 closeImage1.src = closeSrc;
 closeImage2.src = closeSrc;
+closeImage3.src = closeSrcWhite;
 editImage.src = editSrc;
 avatarImage.src = avatarSrc;
 logoImage.src = headerImgSrc;
 
-const generateCards = (data) => {
+const generateCard = (data) => {
   const card = new Card(data, cardTemplate);
   const cardElement = card.getView();
   return cardElement;
 };
 
 const renderCards = (values) => {
-  const card = generateCards(values);
+  const card = generateCard(values);
   section.addItem(card);
 };
 
@@ -80,12 +83,10 @@ const newPostPopup = new PopupWithForm({
     const link = values["image-link"];
 
     renderCards({ name, link });
-
+    newPostPopup.resetValidation();
     newPostPopup.close();
   },
 });
-
-//const imageClickPopup = new Popup();
 
 const validateProfileForm = new FormValidator(
   validationConfig,

@@ -6,6 +6,7 @@
   justify-content: space-between;
   border-radius: 8px;
   font-family: "poppins", arial, serif;
+  flex-direction: column;
 }
 
 .delete__Card_title {
@@ -19,6 +20,11 @@
 }
 
 .delete__card_buttonBox {
+  width: 332px;
+  height: 52px;
+  display: flex;
+  justify-content: space-between;
+  margin: 32px auto;
 }
 
 @media screen and (max-width: 930px) {

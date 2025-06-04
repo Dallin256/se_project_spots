@@ -1,0 +1,30 @@
+.button {
+  width: 156px;
+  height: 52px;
+  border-radius: 8px;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: #212121;
+  font-weight: 500;
+  font-family: "poppins", arial, serif;
+  font-size: 16px;
+}
+
+.button__confirm-delete {
+  background-color: #ff6565;
+}
+
+.button__confirm-delete:hover {
+  background-color: #ff3333;
+  cursor: pointer;
+}
+
+.button__cancel {
+  border: 1px solid #212121;
+}
+
+.button__cancel:hover {
+  background-color: #212121;
+  color: #fff;
+  cursor: pointer;
+}

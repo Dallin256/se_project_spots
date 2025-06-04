@@ -1,6 +1,7 @@
 export const closeImage0 = document.getElementById("close-button0");
 export const closeImage1 = document.getElementById("close-button1");
 export const closeImage2 = document.getElementById("close-button2");
+export const closeImage3 = document.getElementById("close-button3");
 
 export const initialCards = [
   {
