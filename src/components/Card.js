@@ -1,5 +1,6 @@
 import DeleteCard from "./DeleteCard";
 import ViewCard from "./viewCard";
+import Favorite from "./Favorite";
 
 export default class Card {
   constructor(data, templateElement) {
@@ -30,21 +31,40 @@ export default class Card {
     deletePopup.setEventListeners();
   }
 
-  _setEventListeners(cardElement) {
+  _handleViewCard() {
     const viewCardModal = document.querySelector("#picture__modal");
     const viewCard = new ViewCard(
       viewCardModal,
       this._cardLink,
       this._cardName
     );
+    viewCard.generatePopup();
+    viewCard.setEventListeners();
+    viewCard.open();
+  }
+
+  _handleFavoriteCard() {
+    const favorite = new Favorite(this._favoriteBtn);
+    favorite.toggleFavorite();
+  }
+
+  _setEventListeners(cardElement) {
     this._deleteBtn = cardElement.querySelector(".card__delete-button");
+    this._favoriteBtn = cardElement.querySelector(".card__heart");
     this._deleteBtn.addEventListener("click", () => {
       this._handleDeleteCard(cardElement);
     });
-    cardElement.addEventListener("click", () => {
-      viewCard.generatePopup();
-      viewCard.setEventListeners();
-      viewCard.open();
+    cardElement.addEventListener("click", (evt) => {
+      if (evt.target !== this._favoriteBtn && evt.target !== this._deleteBtn) {
+        this._handleViewCard();
+        console.log(this._favoriteBtn);
+      }
+    });
+
+    cardElement.addEventListener("click", (evt) => {
+      if (evt.target == this._favoriteBtn) {
+        this._handleFavoriteCard();
+      }
     });
   }
 }
