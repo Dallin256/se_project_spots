@@ -1,5 +1,10 @@
+.delete__modal {
+  display: flex;
+}
+
 .delete__card {
   display: flex;
+  position: fixed;
   width: 630px;
   height: 172px;
   background-color: #fff;
@@ -28,8 +33,26 @@
 }
 
 @media screen and (max-width: 930px) {
+  .delete__modal {
+    flex-direction: column-reverse;
+  }
+
   .delete__card {
     width: 300px;
     height: 208px;
+  }
+
+  .delete__Card_title {
+    line-height: 120%;
+    font-size: 20px;
+    margin: 12px 12px 0;
+  }
+
+  .delete__card_buttonBox {
+    display: flex;
+    margin: 0 auto 12px;
+    width: 156px;
+    height: 111px;
+    flex-direction: column;
   }
 }

@@ -51,7 +51,9 @@
 
 .modal__close-button_white {
   opacity: 100%;
-  margin: 0 12px 145px;
+  margin: 0;
+  right: -52px;
+  position: absolute;
 }
 
 .modal__form {
@@ -199,6 +201,11 @@
   .modal__close-button {
     width: 40px;
     height: 40px;
+  }
+
+  .modal__close-button_white {
+    right: 6px;
+    top: -56px;
   }
 
   .modal__form {

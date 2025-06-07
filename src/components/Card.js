@@ -57,7 +57,6 @@ export default class Card {
     cardElement.addEventListener("click", (evt) => {
       if (evt.target !== this._favoriteBtn && evt.target !== this._deleteBtn) {
         this._handleViewCard();
-        console.log(this._favoriteBtn);
       }
     });
 

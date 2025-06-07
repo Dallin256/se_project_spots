@@ -1,4 +1,5 @@
 import Popup from "./Popup";
+import Api from "../utils/Api";
 
 export default class DeleteCard extends Popup {
   constructor(popupSelector, cardEl) {
@@ -8,6 +9,16 @@ export default class DeleteCard extends Popup {
   }
 
   _delete(cardEl) {
+    const api = new Api({
+      baseUrl: "https://around-api.en.tripleten-services.com/v1",
+      headers: {
+        authorization: "1b479a53-ca53-48f0-8ad9-ce6abaf33b2b",
+        "Content-Type": "application/json",
+      },
+    });
+    this._cardId = cardEl._id;
+    api.removeCard(this._cardId);
+    console.log(cardEl);
     cardEl.remove();
   }
 

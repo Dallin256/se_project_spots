@@ -49,7 +49,33 @@
               minlength="2"
               maxlength="30"
               required />
-            <p class="error__message"></p
+            <span class="error__message"></span
+          ></label>
+          <button type="submit" class="modal__button-save">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="avatar-edit" class="modal">
+      <div class="modal__container avatar__modal">
+        <div class="modal__heading-box">
+          <h2 class="modal__heading">Edit Profile Avatar</h2>
+          <button class="modal__close-button">
+            <img src="" alt="Close Button" id="close-button4" />
+          </button>
+        </div>
+        <form
+          id="avatar-modal__form"
+          class="modal__form avatar__modal_form"
+          novalidate
+        >
+          <label class="modal__form-label"
+            >Profile Picture<input
+              id="avatar__image-edit"
+              placeholder="Type or paste image link here"
+              class="modal__input"
+              type="url"
+              required /><span class="error__message"></span
           ></label>
           <button class="modal__button-save">Save</button>
         </form>
@@ -93,7 +119,7 @@
       </div>
     </div>
 
-    <div id="delete-card" class="modal">
+    <div id="delete-card" class="modal delete__modal">
       <div class="delete__card">
         <p class="delete__Card_title">
           Are you sure you want to delete this Image?
@@ -102,10 +128,10 @@
           <button class="button button__confirm-delete">Delete</button
           ><button class="button button__cancel">Cancel</button>
         </div>
+        <button class="modal__close-button modal__close-button_white">
+          <img src="" alt="Close Button" id="close-button3" />
+        </button>
       </div>
-      <button class="modal__close-button modal__close-button_white">
-        <img src="" alt="Close Button" id="close-button3" />
-      </button>
     </div>
 
     <div class="page__content">
@@ -116,10 +142,18 @@
         <section class="profile">
           <div class="profile__info">
             <img src="" class="profile__pic" id="avatar" alt="Avatar Picture" />
+            <div class="profile__pic_overlay">
+              <img
+                id="edit-avatar"
+                src=""
+                alt="Edit Avatar"
+                class="profile__pic_editBtn"
+              />
+            </div>
             <div class="profile__details">
               <div class="profile__name-and-description">
-                <h1 class="profile__name">Bessie Coleman</h1>
-                <p class="profile__description">Civil Aviator</p>
+                <h1 class="profile__name">Loading..</h1>
+                <p class="profile__description">Loading..</p>
               </div>
               <button
                 id="profile-edit-button"
