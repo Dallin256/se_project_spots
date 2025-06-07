@@ -1,185 +1,209 @@
+//imports
 import "./index.css";
+import Section from "../components/Section.js";
 import closeSrc from "../images/close.svg";
+import closeSrcWhite from "../images/deleteWhite.png";
 import editSrc from "../images/pencil.svg";
-import avatarSrc from "../images/Avatar.avif";
 import headerImgSrc from "../images/logo.svg";
+import editAvatarSrc from "../images/btn__edit_a.png";
+import editAvatarSrcSm from "../images/btn__edit_a-sm.png";
 import {
-  enableValidation,
-  settings,
-  resetValidation,
-  disableButton,
-} from "./validation.js";
+  closeImage0,
+  closeImage1,
+  closeImage2,
+  closeImage3,
+  closeImage4,
+  cardTemplate,
+  validationConfig,
+} from "../utils/constants.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Card from "../components/Card.js";
+import Api from "../utils/Api.js";
+import Favorite from "../components/Favorite.js";
 
-const closeImage0 = document.getElementById("close-button0");
-const closeImage1 = document.getElementById("close-button1");
-const closeImage2 = document.getElementById("close-button2");
+//general constants
 const editImage = document.getElementById("logo_pencil");
 const avatarImage = document.getElementById("avatar");
+const editAvatarImage = document.getElementById("edit-avatar");
 const logoImage = document.getElementById("logo");
+const cardsBox = document.querySelector("#cards");
+const avatarOverlay = document.querySelector(".profile__pic_overlay");
+const avatarEdit = document.querySelector("#edit-avatar");
 
-const initialCards = [
-  {
-    name: "Aoraki Mountain ",
-    link: "https://images.unsplash.com/photo-1589023846998-3cbff59d037f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Stone Forest",
-    link: "https://plus.unsplash.com/premium_photo-1661963421878-fbe18ea938f1?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Hagia Sophia",
-    link: "https://images.unsplash.com/photo-1623621534850-d325a1980c7e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Rainbow Row",
-    link: "https://images.unsplash.com/photo-1588007129936-5b7754628cd3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNoYXJsZXN0b258ZW58MHx8MHx8fDA%3D",
-  },
-  {
-    name: "Thai Market",
-    link: "https://images.unsplash.com/photo-1614888901558-dd1ef11bada3?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Congaree",
-    link: "https://images.unsplash.com/photo-1647747836228-e4a823814697?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uZ2FyZWV8ZW58MHx8MHx8fDA%3D",
-  },
-  {
-    name: "bridge",
-    link: " https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
-
-const profileEdit = document.querySelector("#profile-edit");
+//forms
 const profileEditForm = document.forms["profile-modal__form"];
 const newPostForm = document.forms["new-post-modal__form"];
-const profileEditButton = document.querySelector("#profile-edit-button");
+const avatarEditForm = document.forms["avatar-modal__form"];
+
+//buttons
 const newPostBtn = document.querySelector(".profile__new-post-btn");
+const profileEditButton = document.querySelector("#profile-edit-button");
+
+//modals
 const newPostModal = document.querySelector("#add-card");
-const newPostClose = newPostModal.querySelector(".modal__close-button");
-const modalPicture = document.querySelector("#picture__modal");
-const modalPictureClose = modalPicture.querySelector(".modal__close-button");
-const modalPictureImage = modalPicture.querySelector(".modal__picture");
+const profileEdit = document.querySelector("#profile-edit");
+const avatarEditModal = document.querySelector("#avatar-edit");
+
+//profile name and about
 const profileName = document.querySelector(".profile__name");
 const profileDesc = document.querySelector(".profile__description");
+
+//modal inputs
 const profileNameEdit = document.querySelector("#profile__name-edit");
 const profileDescEdit = document.querySelector("#profile__description-edit");
-const cardName = newPostForm.querySelector("#card__name_form");
-const cardImage = newPostForm.querySelector("#card__image_form");
-const cardTemplate = document.querySelector("#card").content;
-const cardsBox = document.querySelector("#cards");
-const modalImageCaption = modalPicture.querySelector(".modal__picture-caption");
-const modals = Array.from(document.querySelectorAll(".modal"));
-const profileEditButtonClose = profileEdit.querySelector(
-  ".modal__close-button"
-);
+const profileAvatarEdit = document.querySelector("#avatar__image-edit");
 
-closeImage0.src = closeSrc;
+/*setting each close image as it's own unique id.
+if I didn't do this only the first of each type would work,
+if at all...*/
+closeImage0.src = closeSrcWhite;
 closeImage1.src = closeSrc;
 closeImage2.src = closeSrc;
+closeImage3.src = closeSrcWhite;
+closeImage4.src = closeSrc;
 editImage.src = editSrc;
-avatarImage.src = avatarSrc;
 logoImage.src = headerImgSrc;
+editAvatarImage.src = editAvatarSrc;
 
-function pressKey(evt) {
-  if (evt.key === "Escape") {
-    const currentModal = document.querySelector(".modal_opened");
-    closeModal(currentModal);
-  }
-}
+//api instantiation
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "1b479a53-ca53-48f0-8ad9-ce6abaf33b2b",
+    "Content-Type": "application/json",
+  },
+});
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", pressKey);
-}
+let section;
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", pressKey);
-}
-
-function handleProfileFormSubmit(e) {
-  profileName.innerText = profileNameEdit.value;
-  profileDesc.innerText = profileDescEdit.value;
-  e.preventDefault();
-  closeModal(profileEdit);
-}
-
-function handleNewPostFormSubmit(e) {
-  const postLink = cardImage.value;
-  const postCaption = cardName.value;
-  const newCard = getCardElement({ name: postCaption, link: postLink });
-  cardsBox.prepend(newCard);
-  e.preventDefault();
-  e.target.reset();
-  disableButton(newPostForm, settings);
-  closeModal(newPostModal);
-}
-
-function handleDeleteCard(event) {
-  event.target.closest(".card").remove();
-}
-
-function handleLike(event) {
-  event.target.classList.toggle("card__heart_filled");
-}
-
-function handleImageClick(data) {
-  openModal(modalPicture);
-  console.log(modalPicture);
-  modalPictureImage.src = data.link;
-  modalPictureImage.alt = data.name;
-  modalImageCaption.textContent = data.name;
-}
-
-function getCardElement(data) {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardNameElement = cardElement.querySelector(".card__name");
-  cardNameElement.textContent = data.name;
-  cardImageElement.src = data.link;
-  cardImageElement.alt = data.name;
-  const heart = cardElement.querySelector(".card__heart");
-  const deleteCard = cardElement.querySelector(".card__delete-button");
-  cardImageElement.addEventListener("click", () => {
-    handleImageClick(data);
+//initial page load rendering
+api.getAppinfo().then(([cards, userInfo]) => {
+  //Section instantiation
+  section = new Section({
+    items: cards,
+    renderer: (item) => {
+      renderCards(item);
+    },
+    containerEl: cardsBox,
   });
-  deleteCard.addEventListener("click", handleDeleteCard);
-  heart.addEventListener("click", handleLike);
+
+  //renders the initial cards.
+  section.renderItems();
+
+  //sets the profile name and description
+  profileName.innerText = userInfo.name;
+  profileDesc.innerText = userInfo.about;
+  avatarImage.src = userInfo.avatar;
+});
+
+//gets card info and builds it.
+const generateCard = (data) => {
+  const card = new Card(data, cardTemplate);
+  const cardElement = card.getView();
   return cardElement;
-}
+};
 
-function addCards() {
-  initialCards.forEach((iCard) => {
-    const cardEl = getCardElement(iCard);
-    cardsBox.append(cardEl);
-  });
-}
+//uses a generated card to render it
+const renderCards = (values) => {
+  const card = generateCard(values);
+  section.addItem(card);
+};
 
+//edit Avatar instantiation.
+const avatarPopup = new PopupWithForm({
+  popupSelector: avatarEditModal,
+  handleFormSubmit: () => {
+    avatarImage.src = profileAvatarEdit.value;
+    validateAvatarForm.resetValidation();
+    avatarPopup.close();
+    api.updateProfileAvatar({ avatar: avatarImage.src });
+  },
+});
+
+//edit profile name and description instantiation.
+const profilePopup = new PopupWithForm({
+  popupSelector: profileEdit,
+  handleFormSubmit: () => {
+    profileName.innerText = profileNameEdit.value;
+    profileDesc.innerText = profileDescEdit.value;
+    validateProfileForm.resetValidation();
+    profilePopup.close();
+    api.updateProfile({
+      name: profileName.innerText,
+      about: profileDesc.innerText,
+    });
+  },
+});
+
+//new post form instantiation.
+const newPostPopup = new PopupWithForm({
+  popupSelector: newPostModal,
+  handleFormSubmit: (values) => {
+    const name = values["caption"];
+    const link = values["image-link"];
+
+    renderCards({ name, link });
+    validateNewPostForm.resetValidation();
+    newPostPopup.close();
+    api.postCard({ name: name, link: link });
+  },
+});
+
+//form validation instantiations.
+const validateProfileForm = new FormValidator(
+  validationConfig,
+  profileEditForm
+);
+
+const validateNewPostForm = new FormValidator(validationConfig, newPostForm);
+
+const validateAvatarForm = new FormValidator(validationConfig, avatarEditForm);
+
+//event listeners.
 profileEditButton.addEventListener("click", () => {
-  resetValidation(profileEdit, settings);
-  openModal(profileEdit);
   profileNameEdit.value = profileName.innerText;
   profileDescEdit.value = profileDesc.innerText;
+  profilePopup.open();
 });
 
 newPostBtn.addEventListener("click", () => {
-  disableButton(newPostForm, settings);
-  openModal(newPostModal);
+  newPostPopup.open();
 });
 
-modals.forEach((modal) => {
-  const buttonClose = modal.querySelector(".modal__close-button");
-
-  modal.addEventListener("mousedown", (evt) => {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
-  buttonClose.addEventListener("click", () => {
-    closeModal(modal);
-  });
+avatarOverlay.addEventListener("click", () => {
+  avatarPopup.open();
 });
 
-profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-newPostForm.addEventListener("submit", handleNewPostFormSubmit);
-addCards();
-enableValidation(settings);
+avatarImage.addEventListener("mouseenter", () => {
+  if (window.matchMedia("(min-width: 930px)").matches) {
+    avatarOverlay.classList.add("profile__pic_overlay-visible");
+    avatarEdit.classList.add("profile__pic_overlay-visible");
+  }
+});
+
+avatarOverlay.addEventListener("mouseleave", () => {
+  avatarOverlay.classList.remove("profile__pic_overlay-visible");
+  avatarEdit.classList.remove("profile__pic_overlay-visible");
+});
+
+//calling validation and listeners.
+validateProfileForm.enableValidation();
+validateNewPostForm.enableValidation();
+validateAvatarForm.enableValidation();
+avatarPopup.setEventListeners();
+profilePopup.setEventListeners();
+newPostPopup.setEventListeners();
+
+//resize handling.
+function resizeProfileEdit() {
+  if (!window.matchMedia("(min-width: 930px)").matches) {
+    editAvatarImage.src = editAvatarSrcSm;
+  } else {
+    editAvatarImage.src = editAvatarSrc;
+  }
+}
+
+resizeProfileEdit();
+
+window.addEventListener("resize", resizeProfileEdit);
