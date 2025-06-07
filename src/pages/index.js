@@ -20,6 +20,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Card from "../components/Card.js";
 import Api from "../utils/Api.js";
+import Favorite from "../components/Favorite.js";
 
 //general constants
 const editImage = document.getElementById("logo_pencil");

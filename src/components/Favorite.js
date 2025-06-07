@@ -32,6 +32,4 @@ export default class Favorite {
       api.likeCard(this._id);
     }
   }
-
-  checkfavorite() {}
 }

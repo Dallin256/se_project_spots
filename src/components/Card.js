@@ -23,8 +23,7 @@ export default class Card {
     cardTitle.textContent = this._cardName;
 
     this._setEventListeners(this._cardElement);
-
-    console.log(this._all);
+    this._handleFavoriteCard();
 
     return this._cardElement;
   }
