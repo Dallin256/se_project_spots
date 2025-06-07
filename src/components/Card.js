@@ -7,6 +7,9 @@ export default class Card {
     this._cardTemplate = templateElement;
     this._cardName = data.name;
     this._cardLink = data.link;
+    this._cardId = data._id;
+    this._cardLike = data.isLiked;
+    this._all = data;
   }
 
   getView() {
@@ -21,12 +24,18 @@ export default class Card {
 
     this._setEventListeners(this._cardElement);
 
+    console.log(this._all);
+
     return this._cardElement;
   }
 
   _handleDeleteCard(cardElement) {
     const deleteCardModal = document.querySelector("#delete-card");
-    const deletePopup = new DeleteCard(deleteCardModal, cardElement);
+    const deletePopup = new DeleteCard(
+      deleteCardModal,
+      cardElement,
+      this._cardId
+    );
     deletePopup.open();
     deletePopup.setEventListeners();
   }
@@ -44,7 +53,11 @@ export default class Card {
   }
 
   _handleFavoriteCard() {
-    const favorite = new Favorite(this._favoriteBtn);
+    const favorite = new Favorite(
+      this._favoriteBtn,
+      this._cardLike,
+      this._cardId
+    );
     favorite.toggleFavorite();
   }
 

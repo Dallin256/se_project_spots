@@ -70,7 +70,6 @@ export default class Api {
   }
 
   removeCard(cardId) {
-    console.log(cardId);
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
@@ -82,8 +81,8 @@ export default class Api {
     });
   }
 
-  likeCard() {
-    return fetch(`${this._baseUrl}/:cardId/likes`, {
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
@@ -94,8 +93,8 @@ export default class Api {
     });
   }
 
-  dislikeCard() {
-    return fetch(`${this._baseUrl}/:cardId/likes`, {
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {

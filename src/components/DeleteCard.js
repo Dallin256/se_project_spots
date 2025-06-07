@@ -2,10 +2,11 @@ import Popup from "./Popup";
 import Api from "../utils/Api";
 
 export default class DeleteCard extends Popup {
-  constructor(popupSelector, cardEl) {
+  constructor(popupSelector, cardEl, cardId) {
     super(popupSelector);
     this._popup = popupSelector;
     this._cardEl = cardEl;
+    this._cardId = cardId;
   }
 
   _delete(cardEl) {
@@ -16,9 +17,7 @@ export default class DeleteCard extends Popup {
         "Content-Type": "application/json",
       },
     });
-    this._cardId = cardEl._id;
     api.removeCard(this._cardId);
-    console.log(cardEl);
     cardEl.remove();
   }
 
