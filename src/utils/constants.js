@@ -39,7 +39,7 @@ export const closeImage4 = document.getElementById("close-button4");
 //   },
 // ];
 
-export const validationConfig = {
+export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button-save",
