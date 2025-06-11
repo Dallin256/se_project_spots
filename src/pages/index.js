@@ -120,6 +120,8 @@ function closeModal(modal) {
 }
 
 function handleProfileFormSubmit(e) {
+  const profileSaveBtn = profileEdit.querySelector(".modal__button-save");
+  profileSaveBtn.innerText = "Loading....";
   profileName.innerText = profileNameEdit.value;
   profileDesc.innerText = profileDescEdit.value;
   e.preventDefault();
@@ -128,12 +130,15 @@ function handleProfileFormSubmit(e) {
     about: profileDesc.innerText,
   });
   closeModal(profileEdit);
+  profileSaveBtn.innerText = "Save";
 }
 
 function handleNewPostFormSubmit(e) {
+  const newPostSaveBtn = newPostModal.querySelector(".modal__button-save");
   const postLink = cardImage.value;
   const postCaption = cardName.value;
   const newCard = getCardElement({ name: postCaption, link: postLink });
+  newPostSaveBtn.innerText = "Loading....";
   api
     .postCard({ name: postCaption, link: postLink })
     .then(cardsBox.prepend(newCard));
@@ -141,13 +146,17 @@ function handleNewPostFormSubmit(e) {
   e.target.reset();
   disableButton(newPostForm, settings);
   closeModal(newPostModal);
+  newPostSaveBtn.innerText = "Save";
 }
 
 function handleDeleteCardModal(cardEl, data) {
   openModal(deleteCardModal);
+
   const confirm = deleteCardModal.querySelector(".button__confirm-delete");
   const cancel = deleteCardModal.querySelector(".button__cancel");
+
   confirm.addEventListener("click", () => {
+    confirm.innerText = "Loading....";
     api.removeCard(data._id).then(cardEl.remove());
     closeModal(deleteCardModal);
   });
