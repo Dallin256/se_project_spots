@@ -123,6 +123,10 @@ function handleProfileFormSubmit(e) {
   profileName.innerText = profileNameEdit.value;
   profileDesc.innerText = profileDescEdit.value;
   e.preventDefault();
+  api.updateProfile({
+    name: profileName.innerText,
+    about: profileDesc.innerText,
+  });
   closeModal(profileEdit);
 }
 
@@ -221,18 +225,13 @@ modals.forEach((modal) => {
   });
 });
 
-//edit Avatar instantiation.
-// const avatarPopup = new PopupWithForm({
-//   popupSelector: avatarEditModal,
-//   handleFormSubmit: () => {
-//     avatarImage.src = profileAvatarEdit.value;
-//     validateAvatarForm.resetValidation();
-//     avatarPopup.close();
-//     api.updateProfileAvatar({ avatar: avatarImage.src });
-//   },
-// });
-
-function handleAvatarFormSubmit() {}
+function handleAvatarFormSubmit(e) {
+  e.preventDefault();
+  avatarImage.src = profileAvatarEdit.value;
+  const avatarImg = avatarImage.src;
+  api.updateProfileAvatar({ avatar: avatarImg });
+  closeModal(avatarEditModal);
+}
 
 //resize handling.
 function resizeProfileEdit() {
@@ -262,6 +261,7 @@ newPostBtn.addEventListener("click", () => {
 
 avatarOverlay.addEventListener("click", () => {
   openModal(avatarEditModal);
+  avatarEditModal.addEventListener("submit", handleAvatarFormSubmit);
 });
 
 avatarImage.addEventListener("mouseenter", () => {
