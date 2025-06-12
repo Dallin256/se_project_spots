@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <link rel="stylesheet" href="./src/pages/index.css" />
-    <link rel="icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <title>Spots</title>
@@ -12,9 +11,9 @@
     <div id="picture__modal" class="modal">
       <div class="modal__picture-box">
         <button class="modal__close-button modal__picture-close">
-          <img alt="Close Button" id="close-button0" />
+          <img src="" alt="Close Button" id="close-button0" />
         </button>
-        <img alt="" class="modal__picture" />
+        <img src="" alt="" class="modal__picture" />
         <p class="modal__picture-caption">Image Title</p>
       </div>
     </div>
@@ -24,7 +23,7 @@
         <div class="modal__heading-box">
           <h2 class="modal__heading">New post</h2>
           <button class="modal__close-button">
-            <img alt="Close Button" id="close-button1" />
+            <img src="" alt="Close Button" id="close-button1" />
           </button>
         </div>
         <form id="new-post-modal__form" class="modal__form" novalidate>
@@ -33,6 +32,7 @@
               id="card__image_form"
               placeholder="Paste a link to the picture"
               type="url"
+              name="image-link"
               class="modal__input"
               required />
             <p class="error__message"></p
@@ -44,10 +44,37 @@
               placeholder="Type your caption"
               type="text"
               class="modal__input"
+              name="caption"
               minlength="2"
               maxlength="30"
               required />
-            <p class="error__message"></p
+            <span class="error__message"></span
+          ></label>
+          <button type="submit" class="modal__button-save">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="avatar-edit" class="modal">
+      <div class="modal__container avatar__modal">
+        <div class="modal__heading-box">
+          <h2 class="modal__heading">Edit Profile Avatar</h2>
+          <button class="modal__close-button">
+            <img src="" alt="Close Button" id="close-button4" />
+          </button>
+        </div>
+        <form
+          id="avatar-modal__form"
+          class="modal__form avatar__modal_form"
+          novalidate
+        >
+          <label class="modal__form-label"
+            >Profile Picture<input
+              id="avatar__image-edit"
+              placeholder="Type or paste image link here"
+              class="modal__input"
+              type="url"
+              required /><span class="error__message"></span
           ></label>
           <button class="modal__button-save">Save</button>
         </form>
@@ -59,7 +86,7 @@
         <div class="modal__heading-box">
           <h2 class="modal__heading">Edit profile</h2>
           <button class="modal__close-button">
-            <img alt="Close Button" id="close-button2" />
+            <img src="" alt="Close Button" id="close-button2" />
           </button>
         </div>
         <form id="profile-modal__form" class="modal__form" novalidate>
@@ -82,26 +109,50 @@
               class="modal__input"
               minlength="2"
               maxlength="200"
-              required />
-            <p class="error__message"></p
-          ></label>
+              required
+            />
+            <span class="error__message"></span>
+          </label>
           <button class="modal__button-save">Save</button>
         </form>
       </div>
     </div>
 
+    <div id="delete-card" class="modal delete__modal">
+      <div class="delete__card">
+        <p class="delete__Card_title">
+          Are you sure you want to delete this Image?
+        </p>
+        <div class="delete__card_buttonBox">
+          <button class="button button__confirm-delete">Delete</button
+          ><button class="button button__cancel">Cancel</button>
+        </div>
+        <button class="modal__close-button modal__close-button_white">
+          <img src="" alt="Close Button" id="close-button3" />
+        </button>
+      </div>
+    </div>
+
     <div class="page__content">
       <header class="header">
-        <img class="header__logo" id="logo" alt="Menu Logo" />
+        <img src="" class="header__logo" id="logo" alt="Menu Logo" />
       </header>
       <main>
         <section class="profile">
           <div class="profile__info">
-            <img class="profile__pic" id="avatar" alt="Avatar Picture" />
+            <img src="" class="profile__pic" id="avatar" alt="Avatar Picture" />
+            <div class="profile__pic_overlay">
+              <img
+                id="edit-avatar"
+                src=""
+                alt="Edit Avatar"
+                class="profile__pic_editBtn"
+              />
+            </div>
             <div class="profile__details">
               <div class="profile__name-and-description">
-                <h1 class="profile__name">Bessie Coleman</h1>
-                <p class="profile__description">Civil Aviator</p>
+                <h1 class="profile__name">Loading..</h1>
+                <p class="profile__description">Loading..</p>
               </div>
               <button
                 id="profile-edit-button"
@@ -109,6 +160,7 @@
                 class="profile__edit-button"
               >
                 <img
+                  src=""
                   class="profile__edit-logo"
                   id="logo_pencil"
                   alt="Edit Logo"
@@ -125,7 +177,7 @@
         <section id="cards" class="cards">
           <template id="card">
             <div class="card">
-              <img class="card__image" alt="card image" />
+              <img src="" class="card__image" alt="card image" />
               <button class="card__delete-button"></button>
               <div class="card__details">
                 <h2 class="card__name">Name Here</h2>
