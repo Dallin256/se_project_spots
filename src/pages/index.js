@@ -167,10 +167,11 @@ function handleNewPostFormSubmit(e) {
 
 //opens a modal for the user to confirm whether or not they want to delete a card; and then deletes it.
 function handleDeleteCardModal(cardEl, data) {
-  openModal(deleteCardModal);
-
   const confirm = deleteCardModal.querySelector(".button__confirm-delete");
   const cancel = deleteCardModal.querySelector(".button__cancel");
+
+  confirm.innerText = "Delete";
+  openModal(deleteCardModal);
 
   const handleDeleteConfirm = () => {
     confirm.innerText = "Deleting...";
@@ -178,11 +179,10 @@ function handleDeleteCardModal(cardEl, data) {
       .removeCard(data._id)
       .then(cardEl.remove())
       .catch(console.error)
-      .finally(closeModal(deleteCardModal), (confirm.innerText = "Delete"));
+      .finally(closeModal(deleteCardModal));
   };
 
   confirm.addEventListener("click", handleDeleteConfirm);
-  deleteCardModal.addEventListener("submit", handleDeleteConfirm);
 
   deleteCardModal.addEventListener("click", (evt) => {
     if (evt.target == cancel) {
@@ -295,15 +295,17 @@ function handleAvatarFormSubmit(e) {
   confirm.innerText = "Saving...";
   api
     .updateProfileAvatar({ avatar: avatarImg })
-    .then((avatarImage.src = profileAvatarEdit.value))
+    .then(() => {
+      avatarImage.src = profileAvatarEdit.value;
+      closeModal(avatarEditModal);
+      disableButton(avatarEditModal, settings);
+      avatarEditModal.removeEventListener("submit", handleAvatarFormSubmit);
+      resetValidation(avatarEditModal, settings);
+    })
     .catch(console.error)
-    .finally(
-      closeModal(avatarEditModal),
-      disableButton(avatarEditModal, settings),
-      (confirm.innerText = "Save"),
-      avatarEditModal.removeEventListener("submit", handleAvatarFormSubmit),
-      resetValidation(avatarEditModal, settings)
-    );
+    .finally(() => {
+      confirm.innerText = "Save";
+    });
 }
 
 //resize handling.
