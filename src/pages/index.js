@@ -132,11 +132,11 @@ function handleProfileFormSubmit(e) {
       name: profileNameEdit.value,
       about: profileDescEdit.value,
     })
-    .then(
-      (profileName.innerText = profileNameEdit.value),
-      (profileDesc.innerText = profileDescEdit.value),
-      closeModal(profileEdit)
-    )
+    .then(() => {
+      profileName.innerText = profileNameEdit.value;
+      profileDesc.innerText = profileDescEdit.value;
+      closeModal(profileEdit);
+    })
     .catch(console.error)
     .finally(() => {
       profileSaveBtn.innerText = "Save";
@@ -212,10 +212,10 @@ function handleLike(cardEl, data) {
   ) {
     api
       .dislikeCard(data._id)
-      .then(
-        favoriteBtn.classList.remove("card__heart_filled"),
-        (data.isLiked = false)
-      )
+      .then(() => {
+        favoriteBtn.classList.remove("card__heart_filled");
+        data.isLiked = false;
+      })
       .catch(console.error);
   } else if (
     !favoriteBtn.classList.contains("card__heart_filled") ||
@@ -223,10 +223,10 @@ function handleLike(cardEl, data) {
   ) {
     api
       .likeCard(data._id)
-      .then(
-        favoriteBtn.classList.add("card__heart_filled"),
-        (data.isLiked = true)
-      )
+      .then(() => {
+        favoriteBtn.classList.add("card__heart_filled");
+        data.isLiked = true;
+      })
       .catch(console.error);
   }
 }
