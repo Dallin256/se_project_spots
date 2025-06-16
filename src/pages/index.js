@@ -89,15 +89,18 @@ function addCards(cards) {
 }
 
 //initial page load rendering
-api.getAppinfo().then(([cards, userInfo]) => {
-  //renders the initial cards.
-  addCards(cards);
+api
+  .getAppinfo()
+  .then(([cards, userInfo]) => {
+    //renders the initial cards.
+    addCards(cards);
 
-  //sets the profile name and description
-  profileName.innerText = userInfo.name;
-  profileDesc.innerText = userInfo.about;
-  avatarImage.src = userInfo.avatar;
-});
+    //sets the profile name and description
+    profileName.innerText = userInfo.name;
+    profileDesc.innerText = userInfo.about;
+    avatarImage.src = userInfo.avatar;
+  })
+  .catch(console.error);
 
 //closes any modal by pressing the Escape key
 function pressKey(evt) {
@@ -121,20 +124,23 @@ function closeModal(modal) {
 //updates the profile name and description using user input from a modal
 function handleProfileFormSubmit(e) {
   const profileSaveBtn = e.submitter;
-  profileSaveBtn.innerText = "Loading....";
-  profileName.innerText = profileNameEdit.value;
-  profileDesc.innerText = profileDescEdit.value;
+  profileSaveBtn.innerText = "Saving...";
+
   e.preventDefault();
   api
     .updateProfile({
-      name: profileName.innerText,
-      about: profileDesc.innerText,
+      name: profileNameEdit.value,
+      about: profileDescEdit.value,
     })
+    .then(
+      (profileName.innerText = profileNameEdit.value),
+      (profileDesc.innerText = profileDescEdit.value),
+      closeModal(profileEdit)
+    )
     .catch(console.error)
     .finally(() => {
       profileSaveBtn.innerText = "Save";
     });
-  closeModal(profileEdit);
 }
 
 // adds a new card to the page using user input from a modal
@@ -142,7 +148,7 @@ function handleNewPostFormSubmit(e) {
   const newPostSaveBtn = e.submitter;
   const postLink = cardImage.value;
   const postCaption = cardName.value;
-  newPostSaveBtn.innerText = "Loading....";
+  newPostSaveBtn.innerText = "Saving...";
   e.preventDefault();
   api
     .postCard({ name: postCaption, link: postLink })
@@ -166,22 +172,17 @@ function handleDeleteCardModal(cardEl, data) {
   const confirm = deleteCardModal.querySelector(".button__confirm-delete");
   const cancel = deleteCardModal.querySelector(".button__cancel");
 
-  confirm.addEventListener("click", () => {
-    confirm.innerText = "Loading....";
-    api.removeCard(data._id).then(cardEl.remove());
-    closeModal(deleteCardModal);
-  });
-
-  deleteCardModal.addEventListener("submit", () => {
-    confirm.innerText = "Loading....";
+  const handleDeleteConfirm = () => {
+    confirm.innerText = "Deleting...";
     api
       .removeCard(data._id)
-      .catch(console.error)
       .then(cardEl.remove())
-      .finally(closeModal(deleteCardModal), () => {
-        confirm.innerText = "Delete";
-      });
-  });
+      .catch(console.error)
+      .finally(closeModal(deleteCardModal), (confirm.innerText = "Delete"));
+  };
+
+  confirm.addEventListener("click", handleDeleteConfirm);
+  deleteCardModal.addEventListener("submit", handleDeleteConfirm);
 
   deleteCardModal.addEventListener("click", (evt) => {
     if (evt.target == cancel) {
@@ -198,7 +199,7 @@ function renderLike(cardEl, data) {
   } else if (data.isLiked == false) {
     favoriteBtn.classList.remove("card__heart_filled");
   } else {
-    console.log("ERROR WITH renderLike FUNCTION!");
+    console.error;
   }
 }
 
@@ -209,16 +210,24 @@ function handleLike(cardEl, data) {
     favoriteBtn.classList.contains("card__heart_filled") ||
     data.isLiked == true
   ) {
-    favoriteBtn.classList.remove("card__heart_filled");
-    data.isLiked = false;
-    api.dislikeCard(data._id);
+    api
+      .dislikeCard(data._id)
+      .then(
+        favoriteBtn.classList.remove("card__heart_filled"),
+        (data.isLiked = false)
+      )
+      .catch(console.error);
   } else if (
     !favoriteBtn.classList.contains("card__heart_filled") ||
     data.isLiked == false
   ) {
-    favoriteBtn.classList.add("card__heart_filled");
-    data.isLiked = true;
-    api.likeCard(data._id);
+    api
+      .likeCard(data._id)
+      .then(
+        favoriteBtn.classList.add("card__heart_filled"),
+        (data.isLiked = true)
+      )
+      .catch(console.error);
   }
 }
 
@@ -281,11 +290,12 @@ function handleAvatarModal() {
 function handleAvatarFormSubmit(e) {
   e.preventDefault();
   const confirm = e.submitter;
-  avatarImage.src = profileAvatarEdit.value;
   const avatarImg = avatarImage.src;
-  confirm.innerText = "Loading";
+
+  confirm.innerText = "Saving...";
   api
     .updateProfileAvatar({ avatar: avatarImg })
+    .then((avatarImage.src = profileAvatarEdit.value))
     .catch(console.error)
     .finally(
       closeModal(avatarEditModal),
